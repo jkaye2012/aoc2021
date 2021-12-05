@@ -1,0 +1,40 @@
+---
+Language:        Cpp
+BasedOnStyle:  Google
+ConstructorInitializerIndentWidth: 2
+AllowShortFunctionsOnASingleLine: Inline
+AllowShortIfStatementsOnASingleLine: WithoutElse
+ColumnLimit:     90
+DerivePointerBinding: false
+BreakBeforeBraces: Custom
+BraceWrapping:
+  AfterCaseLabel: true
+  AfterClass:      true
+  AfterControlStatement: true
+  AfterEnum:       true
+  AfterFunction:   true
+  AfterNamespace:  true
+  AfterObjCDeclaration: true
+  AfterStruct:     true
+  AfterUnion:      false
+  AfterExternBlock: false
+  BeforeCatch:     true
+  BeforeElse:      true
+  IndentBraces:    false
+  SplitEmptyFunction: true
+  SplitEmptyRecord: true
+  SplitEmptyNamespace: true
+SpaceBeforeParens: Never
+SortIncludes: true
+IncludeBlocks: Regroup
+IncludeCategories:
+- Regex:    '^(<boost|<gtest)'
+  Priority: 1
+- Regex:    '<'
+  Priority: 2
+- Regex:    '^"(BT).*"'
+  Priority: 3
+- Regex:    '^"(HighFrequency).*"'
+  Priority: 4
+- Regex:    '^"(Contracts).*"'
+  Priority: 5
