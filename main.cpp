@@ -1,10 +1,10 @@
 #include <iostream>
 #include <ostream>
 
-#include "include/diagnostics.h"
+#include "include/bingo.h"
 
 int main(int argc, char** argv)
 {
-  auto v = aoc::DiagnosticInterpreter(aoc::parse_diagnostics());
-  std::cout << v.life_support_rating() << std::endl;
+  auto v = aoc::parse_bingo();
+  std::cout << v.PlayGame() << std::endl;
 }
