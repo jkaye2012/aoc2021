@@ -1,3 +1,4 @@
+#include <cmath>
 #include <concepts>
 #include <span>
 #include <type_traits>
@@ -22,5 +23,11 @@ R sum(std::span<T> s) requires Monoid<R>
   }
 
   return result;
+}
+
+template <std::unsigned_integral U, typename S = std::make_signed_t<U>>
+U abs_diff(U fst, U snd)
+{
+  return std::abs(static_cast<S>(fst - snd));
 }
 }  // namespace aoc

@@ -1,10 +1,10 @@
 #include <iostream>
 #include <ostream>
 
-#include "include/bingo.h"
+#include "include/vents.h"
 
 int main(int argc, char** argv)
 {
-  auto v = aoc::parse_bingo();
-  std::cout << v.PlayGame() << std::endl;
+  auto v = aoc::parse_plane();
+  std::cout << v.count_where([](auto s) { return s > 1; }) << std::endl;
 }

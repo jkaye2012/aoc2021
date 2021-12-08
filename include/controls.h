@@ -1,8 +1,10 @@
+#pragma once
+
 #include <cstdint>
-#include <fstream>
-#include <sstream>
 #include <string>
 #include <vector>
+
+#include "parse.h"
 
 namespace aoc
 {
@@ -73,8 +75,7 @@ using Commands = std::vector<Command>;
 
 inline Commands parse_commands()
 {
-  std::ifstream input("./inputs/2-1.txt");
-  if(!input.is_open()) throw "Failed to open input file";
+  std::ifstream input = open_input("./inputs/2-1.txt");
 
   Commands commands;
   std::string line;
