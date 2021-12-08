@@ -1,10 +1,10 @@
 #include <iostream>
 #include <ostream>
 
-#include "include/vents.h"
+#include "include/lanternfish.h"
 
 int main(int argc, char** argv)
 {
-  auto v = aoc::parse_plane();
-  std::cout << v.count_where([](auto s) { return s > 1; }) << std::endl;
+  auto v = aoc::parse_school();
+  std::cout << v.pass_days(256) << std::endl;
 }
