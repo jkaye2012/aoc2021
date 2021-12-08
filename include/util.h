@@ -2,8 +2,11 @@
 
 #include <cmath>
 #include <concepts>
+#include <iostream>
+#include <ostream>
 #include <span>
 #include <type_traits>
+#include <valarray>
 
 namespace aoc
 {
@@ -31,5 +34,15 @@ template <std::unsigned_integral U, typename S = std::make_signed_t<U>>
 U abs_diff(U fst, U snd)
 {
   return std::abs(static_cast<S>(fst - snd));
+}
+
+inline std::ostream& operator<<(std::ostream& os, std::valarray<uint32_t> const& v)
+{
+  for(auto val : v)
+  {
+    os << val << " ";
+  }
+  os << std::endl;
+  return os;
 }
 }  // namespace aoc
