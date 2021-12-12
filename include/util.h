@@ -36,7 +36,8 @@ U abs_diff(U fst, U snd)
   return std::abs(static_cast<S>(fst - snd));
 }
 
-inline std::ostream& operator<<(std::ostream& os, std::valarray<uint32_t> const& v)
+template <typename T>
+std::ostream& operator<<(std::ostream& os, std::valarray<T> const& v)
 {
   for(auto val : v)
   {
@@ -44,5 +45,21 @@ inline std::ostream& operator<<(std::ostream& os, std::valarray<uint32_t> const&
   }
   os << std::endl;
   return os;
+}
+
+template <typename T>
+void print_matrix(std::valarray<T> const& v, size_t width)
+{
+  auto w = 0;
+  for(auto val : v)
+  {
+    std::cout << val;
+    if(++w == width)
+    {
+      w = 0;
+      std::cout << std::endl;
+    }
+  }
+  std::cout << std::endl;
 }
 }  // namespace aoc
