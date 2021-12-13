@@ -2,14 +2,13 @@
 #include <iostream>
 #include <ostream>
 
-#include "include/dumbo_octo.h"
+#include "include/pathing.h"
 
 int main(int argc, char** argv)
 {
-  auto v = aoc::parse_dumbo();
-  v.print();
+  auto v = aoc::parse_cave_system();
   auto t1 = std::chrono::high_resolution_clock::now();
-  auto result = v.run_until_convergence();
+  auto result = v.unique_paths().size();
   auto t2 = std::chrono::high_resolution_clock::now();
   auto duration = std::chrono::duration_cast<std::chrono::microseconds>(t2 - t1);
   std::cout << "Result: " << result << " in " << duration.count() << " microseconds"
