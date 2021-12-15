@@ -84,10 +84,8 @@ struct CaveSystem
     std::vector<Path> paths;
     for(auto adjacent : cave.Adjacent)
     {
-      for(auto& sp : sub_paths(_caves.at(adjacent), path))
-      {
-        paths.emplace_back(std::move(sp));
-      }
+      auto const& sp = sub_paths(_caves.at(adjacent), path);
+      paths.insert(paths.end(), sp.begin(), sp.end());
     }
     return paths;
   }
