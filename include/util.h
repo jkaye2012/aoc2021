@@ -77,10 +77,12 @@ struct pair_hash
   }
 };
 
-template <size_t Index, typename... T>
+template <std::size_t Index, typename... T>
 struct tuple_hash_impl
 {
-  size_t operator()(std::tuple<T...> const& t)
+  using Tuple = std::tuple<T...>;
+
+  std::size_t operator()(Tuple const& t)
   {
     if constexpr(Index == 0)
     {
@@ -88,18 +90,18 @@ struct tuple_hash_impl
     }
     else
     {
-      return std::hash(std::get<Index>(t)) ^ tuple_hash_impl<Index - 1>(t);
+      return std::hash<std::tuple_element_t<Index, Tuple>>()(std::get<Index>(t)) ^
+             tuple_hash_impl<Index - 1, T...>()(t);
     }
   }
 };
 
-template <typename... T>
 struct tuple_hash
 {
-  template <T...>
+  template <typename... T>
   std::size_t operator()(const std::tuple<T...>& t) const
   {
-    return tuple_hash_impl<std::tuple_size_v<decltype(t)> - 1, T...>(t);
+    return tuple_hash_impl<std::tuple_size_v<std::tuple<T...>> - 1, T...>()(t);
   }
 };
 }  // namespace aoc
