@@ -2,17 +2,17 @@
 #include <iostream>
 #include <ostream>
 
-#include "include/transparent.h"
+#include "include/polymers.h"
 #include "include/util.h"
 
 int main(int argc, char** argv)
 {
-  auto v = aoc::parse_manual();
+  auto v = aoc::parse_polymer();
   auto t1 = std::chrono::high_resolution_clock::now();
-  auto p = v.apply_folds();
+  auto p = v.score(40);
   auto t2 = std::chrono::high_resolution_clock::now();
-  p.print();
+  std::cout << std::endl;
   auto duration = std::chrono::duration_cast<std::chrono::microseconds>(t2 - t1);
-  std::cout << "Result: " << p.num_marks() << " in " << duration.count()
-            << " microseconds" << std::endl;
+  std::cout << "Result: " << p << " in " << duration.count() << " microseconds"
+            << std::endl;
 }
