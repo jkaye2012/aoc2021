@@ -6,16 +6,16 @@
 #include <tuple>
 #include <unordered_map>
 
-#include "include/packet_decoder.h"
+#include "include/trick_shot.h"
 #include "include/util.h"
 
 int main(int argc, char** argv)
 {
   auto t1 = std::chrono::high_resolution_clock::now();
-  auto v = aoc::parse_hex();
+  auto v = aoc::num_velocities({240, 292}, {-90, -57});
   auto t2 = std::chrono::high_resolution_clock::now();
   auto duration = std::chrono::duration_cast<std::chrono::microseconds>(t2 - t1);
-  std::cout << "Result: " << v.Value() << " in " << duration.count() << " microseconds"
+  std::cout << "Result: " << v << " in " << duration.count() << " microseconds"
             << std::endl;
   // using TupleType = std::tuple<size_t, std::string, char>;
   // std::unordered_map<TupleType, size_t, aoc::tuple_hash> example;
