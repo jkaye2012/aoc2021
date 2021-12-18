@@ -37,10 +37,9 @@ inline std::pair<size_t, size_t> possible_trick_steps(std::pair<int, int> const&
   std::pair<size_t, size_t> result{0, 0};
   size_t steps = 1;
   for(int x = x_after_steps(steps, steps); x <= x_target.second;
-      x = x_after_steps(steps, steps))
+      ++steps, x = x_after_steps(steps, steps))
   {
     if(x >= x_target.first && result.first == 0) result.first = steps;
-    steps++;
   }
   result.second = steps - 1;
   return result;
