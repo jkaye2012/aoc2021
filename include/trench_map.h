@@ -41,17 +41,6 @@ static constexpr std::array<std::pair<int32_t, int32_t>, 9> neighbors_of(int32_t
   return neighbors;
 }
 
-struct InfiniteSpace
-{
-  InfiniteSpace() = default;
-  InfiniteSpace(bool identity) : _identity(identity) {}
-
-  bool Identity() const { return _identity; }
-
- private:
-  bool _identity = false;
-};
-
 struct Image
 {
   Image(size_t width, size_t height, bool identity)
