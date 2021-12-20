@@ -6,19 +6,19 @@
 #include <tuple>
 #include <unordered_map>
 
-#include "include/beacon_scanner.h"
+#include "include/trench_map.h"
 #include "include/util.h"
 
 using namespace std::literals::string_view_literals;
 
 int main(int argc, char** argv)
 {
-  auto v = aoc::parse_scanners();
+  auto v = aoc::parse_image();
   auto t1 = std::chrono::high_resolution_clock::now();
-  auto result = v.ManhattanDistance();
+  auto const& image = v.Enhance(50);
+  auto result = image.LitPixels();
   auto t2 = std::chrono::high_resolution_clock::now();
   auto duration = std::chrono::duration_cast<std::chrono::microseconds>(t2 - t1);
-  v.Print();
   std::cout << "Result: " << result << " in " << duration.count() << " microseconds"
             << std::endl;
 

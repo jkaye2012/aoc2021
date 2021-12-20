@@ -171,4 +171,11 @@ std::array<T, N> operator-(std::array<T, N> const& fst,
   }
   return result;
 }
+
+template <typename F, typename S>
+std::ostream& operator<<(std::ostream& os, std::pair<F, S> const& p)
+{
+  os << p.first << "," << p.second;
+  return os;
+}
 }  // namespace aoc
