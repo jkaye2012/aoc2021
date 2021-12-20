@@ -6,20 +6,20 @@
 #include <tuple>
 #include <unordered_map>
 
-#include "include/snailfish.h"
+#include "include/beacon_scanner.h"
 #include "include/util.h"
 
 using namespace std::literals::string_view_literals;
 
 int main(int argc, char** argv)
 {
-  auto v = aoc::parse_numbers();
+  auto v = aoc::parse_scanners();
   auto t1 = std::chrono::high_resolution_clock::now();
-  auto const& [m, n] = aoc::greatest_binary_magnitude(std::move(v));
+  auto result = v.ManhattanDistance();
   auto t2 = std::chrono::high_resolution_clock::now();
-  n.print();
   auto duration = std::chrono::duration_cast<std::chrono::microseconds>(t2 - t1);
-  std::cout << "Result: " << m << " in " << duration.count() << " microseconds"
+  v.Print();
+  std::cout << "Result: " << result << " in " << duration.count() << " microseconds"
             << std::endl;
 
   // using TupleType = std::tuple<size_t, std::string, char>;

@@ -1,5 +1,6 @@
 #pragma once
 
+#include <array>
 #include <cmath>
 #include <concepts>
 #include <iostream>
@@ -17,6 +18,22 @@ concept Monoid = std::is_default_constructible_v<M> && requires(M& t, M const& v
 {
   // clang-format off
   { t += v } -> std::same_as<M&>;
+  // clang-format on
+};
+
+template <class A>
+concept Addable = requires(A a)
+{
+  // clang-format off
+  { a + a } -> std::same_as<A>;
+  // clang-format on
+};
+
+template <class A>
+concept Subtractable = requires(A a)
+{
+  // clang-format off
+  { a - a } -> std::same_as<A>;
   // clang-format on
 };
 
@@ -99,9 +116,59 @@ struct tuple_hash_impl
 struct tuple_hash
 {
   template <typename... T>
-  std::size_t operator()(const std::tuple<T...>& t) const
+  std::size_t operator()(std::tuple<T...> const& t) const
   {
     return tuple_hash_impl<std::tuple_size_v<std::tuple<T...>> - 1, T...>()(t);
   }
 };
+
+struct array_hash
+{
+  template <typename T, size_t N>
+  std::size_t operator()(std::array<T, N> const& a) const
+  {
+    auto hasher = std::hash<T>();
+    size_t result = 0;
+    for(size_t n = 0; n < N; ++n)
+    {
+      result ^= hasher(a[n]);
+    }
+    return result;
+  }
+};
+
+template <typename T, size_t N>
+std::ostream& operator<<(std::ostream& os, std::array<T, N> const& a)
+{
+  for(size_t n = 0; n < N; ++n)
+  {
+    os << a[n];
+    if(n != N - 1) os << ",";
+  }
+  return os;
+}
+
+template <typename T, size_t N>
+std::array<T, N> operator+(std::array<T, N> const& fst,
+                           std::array<T, N> const& snd) requires Addable<T>
+{
+  std::array<T, N> result;
+  for(size_t n = 0; n < N; ++n)
+  {
+    result[n] = fst[n] + snd[n];
+  }
+  return result;
+}
+
+template <typename T, size_t N>
+std::array<T, N> operator-(std::array<T, N> const& fst,
+                           std::array<T, N> const& snd) requires Subtractable<T>
+{
+  std::array<T, N> result;
+  for(size_t n = 0; n < N; ++n)
+  {
+    result[n] = fst[n] - snd[n];
+  }
+  return result;
+}
 }  // namespace aoc
