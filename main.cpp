@@ -6,19 +6,18 @@
 #include <tuple>
 #include <unordered_map>
 
-#include "include/dirac_dice.h"
+#include "include/reactor.h"
 #include "include/util.h"
 
 using namespace std::literals::string_view_literals;
 
 int main(int argc, char** argv)
 {
-  aoc::QuantumDiceGame v(5, 9);
   auto t1 = std::chrono::high_resolution_clock::now();
-  auto result = v.QuantumChampionWins();
+  aoc::day22();
   auto t2 = std::chrono::high_resolution_clock::now();
   auto duration = std::chrono::duration_cast<std::chrono::microseconds>(t2 - t1);
-  std::cout << "Result: " << result << " in " << duration.count() << " microseconds"
+  std::cout << "Result: " << 0 << " in " << duration.count() << " microseconds"
             << std::endl;
 
   // using TupleType = std::tuple<size_t, std::string, char>;
