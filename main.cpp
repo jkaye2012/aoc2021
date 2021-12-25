@@ -16,9 +16,9 @@ using namespace std::literals::string_view_literals;
 
 int main(int argc, char** argv)
 {
-  auto f = aoc::parse_cucumbers();
+  auto f = aoc::parse_fast_cucumbers();
   auto t1 = std::chrono::high_resolution_clock::now();
-  auto result = f.CountMoves();
+  auto result = f.move();
   auto t2 = std::chrono::high_resolution_clock::now();
   auto duration = std::chrono::duration_cast<std::chrono::microseconds>(t2 - t1);
   std::cout << "Result: " << result << " in " << duration.count() << " microseconds "
