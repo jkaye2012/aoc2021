@@ -6,18 +6,22 @@
 #include <tuple>
 #include <unordered_map>
 
+#include "include/alu.h"
+#include "include/alu_input.h"
 #include "include/reactor.h"
+#include "include/sea_cucumbers.h"
 #include "include/util.h"
 
 using namespace std::literals::string_view_literals;
 
 int main(int argc, char** argv)
 {
+  auto f = aoc::parse_cucumbers();
   auto t1 = std::chrono::high_resolution_clock::now();
-  aoc::day22();
+  auto result = f.CountMoves();
   auto t2 = std::chrono::high_resolution_clock::now();
   auto duration = std::chrono::duration_cast<std::chrono::microseconds>(t2 - t1);
-  std::cout << "Result: " << 0 << " in " << duration.count() << " microseconds"
+  std::cout << "Result: " << result << " in " << duration.count() << " microseconds "
             << std::endl;
 
   // using TupleType = std::tuple<size_t, std::string, char>;
